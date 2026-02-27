@@ -8,14 +8,6 @@ public class Bank {
     accounts = new ArrayList<>();
   }
 
-  public void createAccount(String accountNumber, String ownerName){
-    if (findAccount(accountNumber) != null) {
-      System.out.println("Account already exsists!");
-      return;
-    }
-    Account newAccount = new Account(accountNumber, ownerName);
-  }
-
   public Account findAccount(String accountNumber){
     for (Account acc : accounts) {
       if (acc.getAccountNumber().equals(accountNumber)) {
@@ -23,5 +15,30 @@ public class Bank {
       }
     }
     return null;
+  }
+
+  public void createAccount(String accountNumber, String ownerName){
+    if (findAccount(accountNumber) != null) {
+      System.out.println("Account already exsists!");
+      return;
+    }
+    Account newAccount = new Account(accountNumber, ownerName);
+    accounts.add(newAccount);
+
+    System.out.println("Account created successfully.");
+  }
+
+  public void displayAllAccounts(){
+    if (accounts.isEmpty()) {
+      System.out.println("No accounts found");
+    }
+
+    for (Account acc : accounts) {
+      System.out.println(
+        acc.getAccountNumber() + " | " +
+        acc.getOwnerName() + " | Balance: " + 
+        acc.getBalance()
+      );
+    }
   }
 }
