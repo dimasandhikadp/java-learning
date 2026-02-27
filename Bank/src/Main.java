@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.security.auth.login.AccountLockedException;
+
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
@@ -20,10 +22,79 @@ public class Main {
 
       switch (choice) {
         case 1:
-          
+          System.out.print("Enter account number: ");
+          String accNumber = scanner.nextLine();
+
+          System.out.print("Enter owner name: ");
+          String owner = scanner.nextLine();
+
+          bank.createAccount(accNumber, owner);
           break;
-      
+        case 2:
+          System.out.print("Enter account number: ");
+          String depAcc = scanner.nextLine();
+
+          Account depositAccount = bank.findAccount(depAcc);
+
+          if (depositAccount != null) {
+            System.out.print("Enter amount: ");
+            double amount = scanner.nextDouble();
+            scanner.nextLine();
+
+            depositAccount.deposit(amount);
+          } else {
+            System.out.println("Account not found.");
+          }
+          break;
+        case 3:
+          System.out.print("Enter account number: ");
+          String withAcc = scanner.nextLine();
+
+          Account withDrawAccount = bank.findAccount(withAcc);
+
+          if (withDrawAccount != null) {
+            System.out.print("Enter amount: ");
+            double amount = scanner.nextDouble();
+            scanner.nextLine();
+
+            withDrawAccount.withdraw(amount);
+          }else{
+            System.out.println("Account not found.");
+          }
+          break;
+        case 4:
+          System.out.print("Enter account number: ");
+          String balAcc = scanner.nextLine();
+
+          Account balanceAccount = bank.findAccount(balAcc);
+
+          if (balanceAccount != null) {
+            System.out.println("Balance: " + balanceAccount.getBalance());
+          }else{
+            System.out.println("Account not found.");
+          }
+          break;
+        case 5:
+          System.out.print("Enter account number: ");
+          String histAcc = scanner.nextLine();
+
+          Account historyAccount = bank.findAccount(histAcc);
+
+          if (historyAccount != null) {
+            historyAccount.printTransactionHistory();
+          }else{
+            System.out.println("Account not found.");
+          }
+          break;
+        case 6:
+          bank.displayAllAccounts();
+          break;
+        case 7:
+          System.out.println("Thanks for using our bank.");
+          scanner.close();
+          return;
         default:
+          System.out.println("Invalid choice.");
           break;
       }
     }
