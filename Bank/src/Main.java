@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import javax.security.auth.login.AccountLockedException;
-
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
