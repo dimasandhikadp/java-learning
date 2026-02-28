@@ -1,5 +1,4 @@
 import java.util.List;
-import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class BookStore {
@@ -42,7 +41,7 @@ public class BookStore {
   }
 
   //Edit buku
-  public void editBook(String id, String newTitle, String newAuthor, double newPrice){
+  public void editBook(String id, String newTitle, String newAuthor, String newPrice){
     Book book = findBook(id);
 
     if (book == null) {
@@ -50,9 +49,17 @@ public class BookStore {
       return;
     }
 
-    book.setBookTitle(newTitle);
-    book.setAuthor(newAuthor);
-    book.setPrice(newPrice);
+    if (!newTitle.isEmpty()) {
+      book.setBookTitle(newTitle);
+    }
+
+    if (!newAuthor.isEmpty()) {
+      book.setAuthor(newAuthor);
+    }
+
+    if (!newPrice.isEmpty()) {
+      book.setPrice(Double.parseDouble(newPrice));
+    }
 
     System.out.println("Buku berhasil diperbaruhi");
   }
