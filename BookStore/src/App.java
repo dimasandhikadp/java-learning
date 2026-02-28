@@ -60,7 +60,7 @@ public class App {
           books.deleteBook(deleteId);
           break;
         case 0:
-          System.out.println("Terima Kasih!");
+          System.out.println("Terima Kasih! ");
           return;
           default:
             System.out.println("Pilihan Tidak Valid!");
